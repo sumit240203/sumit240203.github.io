@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio – Sumit Niveriya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- BASIC STYLING -->
+    <style>
+        :root {
+            --bg: #0b1020;
+            --bg-alt: #111729;
+            --card: #161f33;
+            --accent: #4da3ff;
+            --accent-soft: rgba(77,163,255,0.15);
+            --accent-strong: #ffcc66;
+            --text-main: #f5f7ff;
+            --text-muted: #a6b0d0;
+            --border-subtle: #232c45;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1a2440 0, #050814 55%);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        aside {
+            background: linear-gradient(180deg, #0e1427, #050814);
+            border-right: 1px solid var(--border-subtle);
+            padding: 2rem 1.5rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .avatar-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, #ffffff33, #4da3ff44, #111729);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .name {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .role {
+            font-size: 0.95rem;
+            color: var(--accent-strong);
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .sidebar-block {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 0.35rem 0;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a::before {
+            content: "• ";
+            color: var(--accent);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 0.15rem 0.55rem;
+            border: 1px solid var(--border-subtle);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin: 0.1rem 0.2rem 0.1rem 0;
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+            margin-right: 0.3rem;
+        }
+
+        /* MAIN CONTENT */
+
+        main {
+            padding: 2rem 2.5rem 3rem;
+        }
+
+        .section {
+            background: linear-gradient(135deg, #161f33, #141b30);
+            border-radius: 14px;
+            padding: 1.6rem 1.6rem 1.4rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .section-tag {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .highlight-box {
+            background: radial-gradient(circle at top left, var(--accent-soft), transparent 60%);
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
+            padding: 0.9rem 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+            gap: 1.4rem;
+        }
+
+        .chips {
+            margin-top: 0.3rem;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.78rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-subtle);
+            margin: 0.12rem 0.25rem 0.12rem 0;
+        }
+
+        .chip span {
+            margin-left: 0.25rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            padding-left: 1.1rem;
+        }
+
+        li {
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-box {
+            margin-top: 1rem;
+            padding: 0.7rem 0.9rem;
+            border-radius: 10px;
+            background: rgba(5, 12, 35, 0.9);
+            border: 1px dashed var(--accent-soft);
+            font-size: 0.86rem;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .small {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        code {
+            background: #101320;
+            padding: 0.1rem 0.25rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        pre {
+            background: #050814;
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid var(--border-subtle);
+            overflow-x: auto;
+            font-size: 0.82rem;
+        }
+
+        footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+            aside {
+                position: static;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            main {
+                padding: 1.5rem 1.25rem 2.5rem;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <!-- SIDEBAR -->
+    <aside>
+        <div class="avatar-circle">S</div>
+        <div class="name">Sumit Niveriya</div>
+        <div class="role">Aspiring Database &amp; IT Professional</div>
+        <div class="sidebar-text">
+            2614 5 Avenue South<br>
+            Lethbridge, Alberta<br><br>
+            <strong>Phone:</strong> 403-929-7240<br>
+            <strong>Email:</strong> <a href="mailto:niveriyasumit@gmail.com">niveriyasumit@gmail.com</a><br>
+            <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sumitniveriya" target="_blank">linkedin.com/in/sumitniveriya</a>
+        </div>
+
+        <div class="sidebar-block">
+            <div class="sidebar-label">Navigation</div>
+            <div class="nav-links">
+                <a href="#mission">Mission</a>
+                <a href="#resume">Résumé &amp; Cover Letter</a>
+                <a href="#references">References</a>
+                <a href="#programming">Programming Sample</a>
+                <a href="#project">Project Work</a>
+                <a href="#other">Other Material</a>
+            </div>
+        </div>
+
+        <div class="sidebar-block">
+            <div class="sidebar-label">Core Focus</div>
+            <div>
+                <div class="pill"><span class="pill-dot"></span>Database Design</div>
+                <div class="pill"><span class="pill-dot"></span>SQL &amp; Data Modeling</div>
+                <div class="pill"><span class="pill-dot"></span>Systems Analysis</div>
+                <div class="pill"><span class="pill-dot"></span>Problem Solving</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- 1. PERSONAL MISSION STATEMENT -->
+        <section class="section" id="mission">
+            <div class="section-header">
+                <div class="section-title">1. Personal Mission Statement</div>
+                <div class="section-tag">CIT2270 – Portfolio</div>
+            </div>
+            <p>
+                My mission is to grow as a highly skilled IT professional with a strong specialization in databases
+                and system design. I want to use technology to solve real problems, improve performance, and help
+                organizations make better decisions with their data. I will keep learning, stay adaptable, and
+                approach every challenge with curiosity, responsibility, and integrity.
+            </p>
+
+            <div class="highlight-box">
+                I see myself as a problem solver first and a technician second – someone who can understand the
+                bigger picture and then design, implement, and refine technical solutions that actually work for people.
+            </div>
+
+            <div class="meta-box">
+                <div class="meta-label">Reason for inclusion &amp; Core Competencies</div>
+                <p class="small">
+                    This statement shows my long-term direction and mindset as an IT professional. It demonstrates:
+                </p>
+                <ul class="small">
+                    <li>Self-awareness and career planning</li>
+                    <li>Commitment to continuous learning and improvement</li>
+                    <li>Professionalism, responsibility, and ethical behaviour</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. RESUME + COVER LETTER + VOLUNTEER -->
+        <section class="section" id="resume">
+            <div class="section-header">
+                <div class="section-title">2. Résumé &amp; Cover Letter</div>
+                <div class="section-tag">Professional Profile</div>
+            </div>
+
+            <div class="two-col">
+                <!-- LEFT: COVER LETTER -->
+                <div>
+                    <h3>Cover Letter (Generic – Practicum / Junior IT Role)</h3>
+                    <p>
+                        To Whom It May Concern,<br><br>
+                        I am a goal-oriented and highly motivated Computer Information Technology student at
+                        Lethbridge College with a strong background in IT and database management. I am seeking an
+                        opportunity where I can contribute my technical skills, learn from experienced professionals,
+                        and continue growing as a better version of myself.<br><br>
+                        My education and projects have given me hands-on experience with database design, SQL
+                        programming, systems analysis, and network administration. I have worked with technologies
+                        such as MySQL, SQL Server, Oracle, and tools for modeling and querying data. I am comfortable
+                        troubleshooting technical issues, collaborating in teams, and taking ownership of my work from
+                        start to finish.<br><br>
+                        I am confident that my strong problem-solving ability, attention to detail, and genuine interest
+                        in databases and IT systems will allow me to add value to your organization.<br><br>
+                        Thank you for your time and consideration.<br><br>
+                        Sincerely,<br>
+                        <strong>Sumit Niveriya</strong>
+                    </p>
+                </div>
+
+                <!-- RIGHT: RESUME SUMMARY -->
+                <div>
+                    <h3>Objective</h3>
+                    <p>
+                        A goal-oriented and highly motivated person with a strong background in the IT field and
+                        exceptional problem-solving skills, seeking an opportunity to contribute technical expertise
+                        and grow as a better version of myself. Skilled in managing complex projects and optimizing
+                        overall output.
+                    </p>
+
+                    <h3>Summary of Qualifications</h3>
+                    <ul class="small">
+                        <li>Strong knowledge of database management systems (DBMS), including SQL, data modeling, and database design.</li>
+                        <li>Practical experience in querying, optimizing, and maintaining databases using SQL.</li>
+                        <li>Strong analytical skills combined with the ability to troubleshoot technical issues and maximize system performance.</li>
+                    </ul>
+
+                    <h3>Education</h3>
+                    <p class="small">
+                        <strong>Diploma in Information Technology</strong><br>
+                        Lethbridge College, Lethbridge, Alberta<br>
+                        2023 – Present<br>
+                        Relevant Coursework: Database Design, Data Structures, SQL Programming, Systems Analysis, Network Administration
+                    </p>
+
+                    <h3>Technical Skills</h3>
+                    <div class="chips">
+                        <div class="chip">Database Management<span>MySQL, SQL Server, Oracle, MongoDB</span></div>
+                        <div class="chip">Programming<span>SQL, Python (basic), Java (basic)</span></div>
+                        <div class="chip">Tools<span>Excel (Advanced), DB querying tools (e.g., DBeaver)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem;">Professional Experience</h3>
+            <p class="small">
+                <strong>IT Intern (Database Management)</strong> – Lethbridge College, Lethbridge, Alberta<br>
+                Summer 2023
+            </p>
+            <ul class="small">
+                <li>Worked with faculty and the IT team to assist in managing and optimizing internal database systems.</li>
+                <li>Supported database migrations, data entry, and ensured data integrity across systems.</li>
+                <li>Contributed to improving overall performance and reliability of data workflows.</li>
+            </ul>
+
+            <h3>Projects</h3>
+            <p class="small">
+                <strong>Database Design Project</strong> – Lethbridge College, Fall 2023
+            </p>
+            <ul class="small">
+                <li>Designed and implemented a database solution for a hypothetical e-commerce business, focusing on customer data, product inventory, and order management.</li>
+                <li>Developed SQL queries to retrieve and update records, ensuring proper indexing and performance optimization.</li>
+            </ul>
+
+            <h3>Awards &amp; Achievements</h3>
+            <ul class="small">
+                <li><strong>Outstanding Intern (2023)</strong> – Recognized for exceptional problem-solving skills and attention to detail during IT internship.</li>
+            </ul>
+
+            <h3>Volunteer Experience (IT / Soft Skills)</h3>
+            <ul class="small">
+                <li>__________ – Helped classmates troubleshoot database and SQL assignments, demonstrating teamwork and mentoring skills.</li>
+                <li>__________ – Assisted peers with IT-related tasks (e.g., software setup, troubleshooting), showing communication and patience.</li>
+                <li>__________ – Any non-IT volunteering (events, community, clubs) that highlights reliability and customer service.</li>
+            </ul>
+
+            <div class="meta-box">
+                <div class="meta-label">Reason for inclusion &amp; Core Competencies</div>
+                <p class="small">
+                    The résumé and cover letter are what I will use to apply for practicum and entry-level IT roles.
+                    They demonstrate:
+                </p>
+                <ul class="small">
+                    <li>Professional written communication and structure</li>
+                    <li>Ability to summarize skills, experience, and education</li>
+                    <li>Soft skills such as teamwork, reliability, and initiative</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. LETTERS OF REFERENCE / ACCOLADES -->
+        <section class="section" id="references">
+            <div class="section-header">
+                <div class="section-title">3. Letters of Reference &amp; Accolades</div>
+                <div class="section-tag">External Validation</div>
+            </div>
+
+            <p class="small">
+                (Replace the placeholders below with short quotes or attach links to actual reference letters.)
+            </p>
+
+            <ul class="small">
+                <li>
+                    “________________________________________”<br>
+                    <span class="small">– __________________ (Instructor / Faculty, Lethbridge College)</span>
+                </li>
+                <li>
+                    “________________________________________”<br>
+                    <span class="small">– __________________ (Internship Supervisor)</span>
+                </li>
+                <li>
+                    “________________________________________”<br>
+                    <span class="small">– __________________ (Coworker / Personal Reference)</span>
+                </li>
+            </ul>
+
+            <p class="small">
+                Reference Letters (if available):
+            </p>
+            <ul class="small">
+                <li><a href="__________" target="_blank">Reference Letter – Instructor</a></li>
+                <li><a href="__________" target="_blank">Reference Letter – Internship Supervisor</a></li>
+            </ul>
+
+            <div class="meta-box">
+                <div class="meta-label">Reason for inclusion &amp; Core Competencies</div>
+                <p class="small">
+                    These references and quotes provide third-party confirmation of my skills and character. They
+                    demonstrate:
+                </p>
+                <ul class="small">
+                    <li>Professionalism and reliability</li>
+                    <li>Ability to work well in teams and collaborate</li>
+                    <li>Positive attitude and willingness to learn</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. PROGRAMMING WORK SAMPLE -->
+        <section class="section" id="programming">
+            <div class="section-header">
+                <div class="section-title">4. Programming Work Sample</div>
+                <div class="section-tag">Code Example</div>
+            </div>
+
+            <h3>PHP Function: <code>makeLinks()</code></h3>
+            <p class="small">
+                This example shows a simple PHP function that receives an associative array of links and outputs them
+                as HTML anchor tags. It demonstrates understanding of arrays, loops, functions, and basic dynamic HTML.
+            </p>
+
+            <pre><code>&lt;?php
+function makeLinks($array) {
+    foreach ($array as $name =&gt; $url) {
+        echo "&lt;a href='$url' target='_blank'&gt;$name&lt;/a&gt;&lt;br&gt;";
+    }
+}
+
+// Example usage:
+$links = array(
+    "Outlook Mail" =&gt; "https://outlook.com",
+    "Reddit News" =&gt; "https://reddit.com",
+    "Google Search" =&gt; "https://google.com"
+);
+
+// makeLinks($links);
+?&gt;
+</code></pre>
+
+            <p class="small">
+                GitHub repository (programming samples): <a href="__________" target="_blank">__________</a>
+            </p>
+
+            <div class="meta-box">
+                <div class="meta-label">Reason for inclusion &amp; Core Competencies</div>
+                <p class="small">
+                    This programming sample is included as a basic example of my coding style and understanding of
+                    core concepts. It demonstrates:
+                </p>
+                <ul class="small">
+                    <li>Use of PHP functions, arrays, and loops</li>
+                    <li>Dynamic HTML generation for web pages</li>
+                    <li>Clean, readable, and reusable code</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. PROJECT WORK SAMPLE -->
+        <section class="section" id="project">
+            <div class="section-header">
+                <div class="section-title">5. Project Work Sample</div>
+                <div class="section-tag">Systems &amp; Databases</div>
+            </div>
+
+            <h3>Fuzzy Peach Salon Management System (Systems Analysis / Database Design)</h3>
+            <p class="small">
+                Academic project designing a system for managing appointments, employees, services, and sales for a salon.
+            </p>
+            <ul class="small">
+                <li>Created a full ERD using Crow’s Foot notation with entities such as Employee, Shift, Service, Appointment, and Sale.</li>
+                <li>Designed a data dictionary, relationships, and a CRUD matrix to map how data is created, read, updated, and deleted.</li>
+                <li>Worked in a team to document functional and non-functional requirements and present the system to the class.</li>
+            </ul>
+
+            <p class="small">
+                Project documentation / slides: <a href="__________" target="_blank">__________</a>
+            </p>
+
+            <h3>Database Design Project – E-commerce System</h3>
+            <p class="small">
+                Designed and implemented a database for a hypothetical e-commerce business, focusing on customer data,
+                product inventory, and order management.
+            </p>
+            <ul class="small">
+                <li>Created tables and relationships to capture customers, products, orders, and order items.</li>
+                <li>Wrote SQL queries for reporting, searching products, and analyzing orders.</li>
+                <li>Used indexing and query optimization techniques to improve performance.</li>
+            </ul>
+
+            <div class="meta-box">
+                <div class="meta-label">Reason for inclusion &amp; Core Competencies</div>
+                <p class="small">
+                    These projects are included because they represent some of my best academic work. They demonstrate:
+                </p>
+                <ul class="small">
+                    <li>Database design, data modeling, and SQL skills</li>
+                    <li>Systems analysis and documentation</li>
+                    <li>Teamwork, communication, and presentation skills</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 6. OTHER RELATED MATERIAL -->
+        <section class="section" id="other">
+            <div class="section-header">
+                <div class="section-title">6. Other Related Material</div>
+                <div class="section-tag">Extra Evidence</div>
+            </div>
+
+            <h3>Additional Technical Work</h3>
+            <ul class="small">
+                <li>
+                    <strong>SQL Practice &amp; DBMS Labs</strong> – Ongoing practice with complex queries,
+                    joins, indexing, and optimization in MySQL / SQL Server / Oracle.<br>
+                    Evidence / scripts: <a href="__________" target="_blank">__________</a>
+                </li>
+                <li>
+                    <strong>Systems &amp; Network Labs</strong> – Work with systems analysis, network administration, and related CIT coursework.<br>
+                    Lab documentation: <a href="__________" target="_blank">__________</a>
+                </li>
+            </ul>
+
+            <h3>Achievements &amp; Interests</h3>
+            <ul class="small">
+                <li>Strong interest in databases, data modeling, and performance optimization.</li>
+                <li>Motivated to keep learning new tools, frameworks, and best practices in IT.</li>
+                <li>__________ (any extra awards, certifications, or personal achievements).</li>
+            </ul>
+
+            <div class="meta-box">
+                <div class="meta-label">Reason for inclusion &amp; Core Competencies</div>
+                <p class="small">
+                    This section shows the broader picture of who I am as a learner and future IT professional. It
+                    demonstrates:
+                </p>
+                <ul class="small">
+                    <li>Breadth of technical experience beyond a single course or project</li>
+                    <li>Initiative and curiosity</li>
+                    <li>Ability to document and reflect on my own learning</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            CIT2270 Portfolio – Sumit Niveriya – Lethbridge College
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>
