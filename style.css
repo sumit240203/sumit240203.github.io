@@ -1,0 +1,203 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-main: #0f1115;       /* Very dark charcoal */
+    --bg-card: #181b21;       /* Slightly lighter card bg */
+    --accent: #3b82f6;        /* Electric Blue */
+    --accent-hover: #60a5fa;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border: #2d333b;
+    --code-bg: #0d1117;
+}
+
+/* --- RESET & BASE --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Manrope', sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- THE BENTO GRID --- */
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+    grid-template-rows: auto auto auto;
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* --- CARD STYLES --- */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- 1. HERO CARD (Spans 2 cols, 1 row) --- */
+.hero-card {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(145deg, #181b21 0%, #1c222b 100%);
+}
+
+.status-badge {
+    background: rgba(16, 185, 129, 0.1);
+    color: #34d399;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.dot { width: 8px; height: 8px; background: currentColor; border-radius: 50%; }
+
+.hero-text h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 0.5rem; }
+.hero-text h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem; }
+.hero-text p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+.hero-image-container {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.hero-actions { display: flex; gap: 1rem; }
+.btn {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.btn.primary { background: var(--accent); color: white; }
+.btn.primary:hover { background: var(--accent-hover); }
+.btn.secondary { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
+.btn.secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--text-main); }
+
+/* --- 2. TECH STACK (Spans 1 col) --- */
+.stack-card { grid-column: span 1; }
+.stack-grid { display: flex; flex-direction: column; gap: 0.8rem; }
+.tech-item {
+    background: rgba(255,255,255,0.03);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border: 1px solid transparent;
+}
+.tech-item:hover { border-color: var(--accent); background: rgba(59, 130, 246, 0.1); }
+
+/* --- 3. PROJECT CARD (Spans 1 col, tall) --- */
+.project-card { 
+    grid-column: span 1; 
+    grid-row: span 2; 
+    background: linear-gradient(180deg, #181b21 0%, #0f1115 100%);
+}
+.tag { font-size: 0.7rem; background: var(--accent); color: white; padding: 2px 8px; border-radius: 4px; }
+.project-content h4 { font-size: 1.4rem; margin: 1rem 0; }
+.project-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.project-details li { font-size: 0.85rem; margin-bottom: 0.8rem; color: #d1d5db; list-style: none; border-left: 2px solid var(--accent); padding-left: 0.8rem; }
+
+/* --- 4. CODE CARD (Spans 2 cols) --- */
+.code-card { grid-column: span 2; }
+.code-window {
+    background: var(--code-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+}
+.code-header { display: flex; gap: 6px; margin-bottom: 1rem; align-items: center; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+.filename { margin-left: 10px; color: var(--text-muted); font-size: 0.8rem; }
+
+pre { color: #e5e7eb; }
+.keyword { color: #ff7b72; }
+.function { color: #d2a8ff; }
+.string { color: #a5d6ff; }
+.type { color: #79c0ff; }
+.comment { color: #8b949e; font-style: italic; }
+
+.small-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; text-align: right; }
+
+/* --- 5. EXPERIENCE CARD (Spans 2 cols) --- */
+.experience-card { grid-column: span 2; }
+.job-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.job-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+.job-header h4 { font-size: 1.1rem; }
+.date { font-size: 0.85rem; color: var(--accent); }
+.job-item p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+.tags { display: flex; gap: 0.5rem; }
+.tags span { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 4px; color: var(--text-muted); }
+
+/* --- 6. MISSION (Spans 2 cols) --- */
+.mission-card { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; background: var(--accent); border: none; }
+.mission-card h3, .mission-card p { color: white; }
+.mission-card h3 { opacity: 0.8; }
+.mission-card p { font-size: 1.1rem; font-weight: 600; font-style: italic; }
+
+/* --- 7. FOOTER (Spans 4 cols) --- */
+.footer-card { grid-column: span 4; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; }
+.social-links { display: flex; gap: 1rem; font-size: 1.2rem; }
+.social-links a { color: var(--text-muted); transition: 0.2s; }
+.social-links a:hover { color: var(--accent); }
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 900px) {
+    .bento-container { grid-template-columns: 1fr; }
+    .hero-card, .stack-card, .project-card, .code-card, .experience-card, .mission-card, .footer-card { grid-column: span 1; }
+    .hero-card { flex-direction: column-reverse; text-align: center; }
+    .hero-image-container { width: 150px; height: 150px; margin: 0 auto; }
+    .hero-actions { justify-content: center; }
+}
