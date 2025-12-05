@@ -1,162 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumit Niveriya | IT Operations & Database Specialist</title>
-    
-    <!-- Professional Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Link to Separate CSS File -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>Sumit Niveriya | IT & Database Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Sumit Niveriya - Computer Information Technology student specializing in databases, systems analysis, and IT operations." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-    <div class="bento-container">
-        
-        <!-- BLOCK 1: HERO & PROFILE PIC -->
-        <div class="card hero-card">
-            <div class="hero-text">
-                <div class="status-badge"><span class="dot"></span> Open to Work</div>
-                <h1>Sumit Niveriya</h1>
-                <h2>IT Operations & Database Specialist</h2>
-                <p>Bridging the gap between complex database architecture and operational efficiency. Experienced in high-compliance environments and full-stack systems.</p>
-                <div class="hero-actions">
-                    <a href="resume.pdf" target="_blank" class="btn primary"><i class="fa-solid fa-file-arrow-down"></i> Resume</a>
-                    <a href="mailto:niveriyasumit@gmail.com" class="btn secondary"><i class="fa-solid fa-envelope"></i> Contact</a>
-                </div>
-            </div>
-            <div class="hero-image-container">
-                <!-- DRAG YOUR IMAGE HERE AND NAME IT profile.png -->
-                <img src="profile.png" alt="Sumit Niveriya" class="profile-pic">
-            </div>
-        </div>
-
-        <!-- BLOCK 2: TECH STACK -->
-        <div class="card stack-card">
-            <h3><i class="fa-solid fa-layer-group"></i> Tech Stack</h3>
-            <div class="stack-grid">
-                <div class="tech-item"><i class="fa-solid fa-database"></i> MySQL</div>
-                <div class="tech-item"><i class="fa-solid fa-server"></i> SQL Server</div>
-                <div class="tech-item"><i class="fa-brands fa-php"></i> PHP</div>
-                <div class="tech-item"><i class="fa-brands fa-linux"></i> Linux</div>
-                <div class="tech-item"><i class="fa-solid fa-network-wired"></i> Systems Analysis</div>
-                <div class="tech-item"><i class="fa-solid fa-diagram-project"></i> Data Modeling</div>
-            </div>
-        </div>
-
-        <!-- BLOCK 3: FEATURED PROJECT (PEACHTRACK) -->
-        <div class="card project-card">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-star"></i> Featured Architecture</h3>
-                <span class="tag">Full Stack System</span>
-            </div>
-            <div class="project-content">
-                <h4>PeachTrack Management System</h4>
-                <p class="project-desc">
-                    A centralized web-based ERP solution designed for <em>Fuzzy Peach Wax & Beauty Bar</em>. 
-                    This system replaced manual paper tracking with a secure, automated SQL architecture to handle 
-                    employee shifts, tip distribution, and sales analytics.
-                </p>
-                <ul class="project-details">
-                    <li><strong>Role:</strong> Lead Programmer & Database Designer</li>
-                    <li><strong>Architecture:</strong> Apache/MySQL/PHP (LAMP Stack)</li>
-                    <li><strong>Key Feature:</strong> Engineered a Role-Based Access Control (RBAC) system for Admin vs. Employee security.</li>
-                    <li><strong>Outcome:</strong> Reduced payroll calculation errors by 100% and provided real-time transparency.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- BLOCK 4: CODE SAMPLE (The "Impressive" Part) -->
-        <div class="card code-card">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-code"></i> Database Logic</h3>
-                <span class="tag">SQL Stored Procedure</span>
-            </div>
-            <div class="code-window">
-                <div class="code-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <span class="filename">procedures.sql</span>
-                </div>
-                <pre><code><span class="keyword">CREATE PROCEDURE</span> sp_CalculateShiftEarnings(
-    <span class="keyword">IN</span> emp_id_param <span class="type">INT</span>,
-    <span class="keyword">IN</span> shift_date <span class="type">DATE</span>
-)
-<span class="keyword">BEGIN</span>
-    <span class="comment">-- Calculate total sales and tips for specific shift</span>
-    <span class="keyword">SELECT</span> 
-        e.employee_name,
-        <span class="function">COUNT</span>(t.transaction_id) <span class="keyword">AS</span> total_appointments,
-        <span class="function">SUM</span>(t.tip_amount) <span class="keyword">AS</span> total_tips,
-        <span class="function">CASE</span> 
-            <span class="keyword">WHEN</span> SUM(t.tip_amount) > 100 <span class="keyword">THEN</span> <span class="string">'High Performance'</span>
-            <span class="keyword">ELSE</span> <span class="string">'Standard'</span>
-        <span class="keyword">END AS</span> performance_rating
-    <span class="keyword">FROM</span> employees e
-    <span class="keyword">JOIN</span> transactions t <span class="keyword">ON</span> e.id = t.emp_id
-    <span class="keyword">WHERE</span> e.id = emp_id_param 
-      <span class="keyword">AND</span> DATE(t.created_at) = shift_date
-    <span class="keyword">GROUP BY</span> e.id;
-<span class="keyword">END</span> //</code></pre>
-            </div>
-            <p class="small-note">Demonstrates usage of Stored Procedures, Joins, Aggregation, and Conditional Logic.</p>
-        </div>
-
-        <!-- BLOCK 5: PROFESSIONAL LEADERSHIP (Casino & McDonald's) -->
-        <div class="card experience-card">
-            <h3><i class="fa-solid fa-briefcase"></i> Operations Leadership</h3>
-            
-            <div class="job-item">
-                <div class="job-header">
-                    <h4>Pit Supervisor</h4>
-                    <span class="date">Pure Casino</span>
-                </div>
-                <p>Managed high-stakes gaming floor operations in a strictly regulated environment (AGLC). Responsible for real-time dispute resolution, asset security (chips/cash), and ensuring 100% compliance with surveillance protocols.</p>
-                <div class="tags">
-                    <span>Compliance</span>
-                    <span>Risk Management</span>
-                    <span>Team Oversight</span>
-                </div>
-            </div>
-
-            <div class="job-item">
-                <div class="job-header">
-                    <h4>Manager</h4>
-                    <span class="date">McDonald's</span>
-                </div>
-                <p>Directed shift operations and optimized workflow efficiency for high-volume periods. Managed inventory systems, staff scheduling, and resolved technical POS issues during peak hours.</p>
-                <div class="tags">
-                    <span>Logistics</span>
-                    <span>Systems Management</span>
-                    <span>Leadership</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- BLOCK 6: MISSION -->
-        <div class="card mission-card">
-            <h3><i class="fa-solid fa-rocket"></i> Professional Mission</h3>
-            <p>
-                "To leverage my background in high-pressure operational management and my technical training in database systems to build resilient, efficient IT infrastructure. I aim to solve business problems where data integrity and operational workflow intersect."
-            </p>
-        </div>
-
-        <!-- BLOCK 7: FOOTER -->
-        <div class="card footer-card">
-            <p>&copy; 2025 Sumit Niveriya | Built with HTML5 & CSS3 Grid</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/sumitniveriya"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/sumit240203"><i class="fa-brands fa-github"></i></a>
-            </div>
-        </div>
-
+<header class="site-header">
+  <div class="container header-content">
+    <div>
+      <p class="tag">Open to Practicum & IT Roles</p>
+      <h1 class="name">Sumit Niveriya</h1>
+      <p class="title">Computer Information Technology Student · IT & Database Specialist</p>
+      <p class="intro">
+        I design reliable database-backed systems and bring calm, structured thinking to
+        high-pressure environments. This portfolio showcases my best academic and professional work
+        aligned with the CIT 2271 practicum and IT Seminar portfolio outcomes.
+      </p>
+      <div class="header-actions">
+        <a href="#mission" class="btn primary">View Mission & Portfolio</a>
+        <a href="resume.pdf" class="btn outline" target="_blank" rel="noopener">Download Résumé (PDF)</a>
+      </div>
     </div>
+  <div class="contact-card">
+  <img src="profile.png" alt="Profile picture of Sumit Niveriya" class="profile-photo" />
 
+  <h2>Contact</h2>
+  <p><strong>Location:</strong> Lethbridge, AB</p>
+  <p><strong>Phone:</strong> <a href="tel:+14039297240">403-929-7240</a></p>
+  <p><strong>Email:</strong> <a href="mailto:niveriyasumit@gmail.com">niveriyasumit@gmail.com</a></p>
+  <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sumitniveriya" target="_blank" rel="noopener">linkedin.com/in/sumitniveriya</a></p>
+  <p><strong>Portfolio:</strong> <a href="https://sumit240203.github.io" target="_blank" rel="noopener">sumit240203.github.io</a></p>
+</div>
+
+  </div>
+  <nav class="main-nav">
+    <div class="container nav-inner">
+      <a href="#mission">Mission</a>
+      <a href="#resume">Résumé</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#accolades">Accolades</a>
+      <a href="#programming">Programming Sample</a>
+      <a href="#projects">Project Work</a>
+      <a href="#other">Other Highlights</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- PERSONAL MISSION STATEMENT -->
+  <section id="mission" class="section">
+    <div class="container">
+      <h2>Personal Mission Statement</h2>
+      <p class="mission-text">
+        My mission is to combine strong database design, systems analysis, and calm decision-making
+        under pressure to build IT systems that are reliable, easy to maintain, and directly useful
+        to the people who depend on them. I want to work in roles where I can translate real-world
+        business problems into clear technical solutions and continuously grow as a database and IT
+        professional.
+      </p>
+      <div class="reason-card">
+        <h3>Why this is included</h3>
+        <p>
+          Demonstrates self-awareness, career focus, and alignment with practicum goals.
+        </p>
+        <p><strong>Core Competencies:</strong> Self-Management, Professionalism, Career Planning</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME (LANDING PAGE = COVER LETTER) -->
+  <section id="resume" class="section section-alt">
+    <div class="container">
+      <h2>Résumé</h2>
+
+      <div class="resume-grid">
+        <!-- LEFT COLUMN: SKILLS -->
+        <div>
+          <h3>Professional Profile</h3>
+          <p>
+            Goal-oriented Computer Information Technology student specializing in database design and
+            systems analysis. Proven ability to translate business requirements into efficient SQL
+            database structures and reliable backend logic. Seeking a practicum opportunity to
+            contribute strong data modeling, troubleshooting, and analytical skills in a professional
+            IT environment.
+          </p>
+
+          <h3>Technical Skills</h3>
+          <ul class="pill-list">
+            <li>MySQL · SQL Server · Oracle</li>
+            <li>Relational Modeling · Normalization (1NF–3NF)</li>
+            <li>SQL (Joins, Subqueries, Stored Procedures)</li>
+            <li>PHP · HTML5/CSS3 · Basic Python</li>
+            <li>Linux (Ubuntu) · Windows Server 2019</li>
+            <li>GitHub · DBeaver · Visio</li>
+          </ul>
+
+          <h3>Core Competencies</h3>
+          <ul class="pill-list">
+            <li>Systems Analysis</li>
+            <li>Requirements Gathering</li>
+            <li>Problem Solving & Troubleshooting</li>
+            <li>Teamwork & Communication</li>
+            <li>Time Management</li>
+            <li>Customer Service under Pressure</li>
+          </ul>
+        </div>
+
+        <!-- RIGHT COLUMN: EDUCATION & EXPERIENCE -->
+        <div>
+          <h3>Education</h3>
+          <div class="item-block">
+            <div class="item-header">
+              <div>
+                <p class="item-title">Diploma in Computer Information Technology</p>
+                <p class="item-subtitle">Lethbridge Polytechnic (formerly Lethbridge College) – Lethbridge, AB</p>
+              </div>
+              <p class="item-date">Expected 2025–2026</p>
+            </div>
+            <p class="item-body">
+              Relevant Coursework: Database Management Systems, Systems Analysis & Design,
+              Network Administration, Operating Systems, Web Development.
+            </p>
+          </div>
+
+          <h3>Professional Experience</h3>
+
+          <div class="item-block">
+            <div class="item-header">
+              <div>
+                <p class="item-title">Pit Supervisor / Table Games Dealer</p>
+                <p class="item-subtitle">Pure Casino Lethbridge</p>
+              </div>
+              <p class="item-date">20XX – Present</p>
+            </div>
+            <ul class="item-body">
+              <li>Manage high-stakes gaming floor operations in a regulated AGLC environment.</li>
+              <li>Handle real-time dispute resolution, chip/cash tracking, and compliance with surveillance protocols.</li>
+              <li>Train and support team members to maintain smooth operations during peak traffic.</li>
+            </ul>
+          </div>
+
+          <div class="item-block">
+            <div class="item-header">
+              <div>
+                <p class="item-title">Shift Manager</p>
+                <p class="item-subtitle">McDonald's</p>
+              </div>
+              <p class="item-date">20XX – 20XX</p>
+            </div>
+            <ul class="item-body">
+              <li>Directed shift operations in a fast-paced environment with high customer volume.</li>
+              <li>Managed staff scheduling, inventory checks, and basic POS troubleshooting.</li>
+              <li>Built strong communication and leadership skills while meeting service targets.</li>
+            </ul>
+          </div>
+
+          <h3>Certifications</h3>
+          <ul class="item-body">
+            <li>SQL Fundamentals – Coursera</li>
+            <li>Database Management Systems (DBMS) Certificate – AML</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reason-card">
+        <h3>Why this is included</h3>
+        <p>
+          The résumé demonstrates my technical base, relevant work history, and readiness for
+          practicum roles in IT support, database work, and general technical positions.
+        </p>
+        <p><strong>Core Competencies:</strong> Written Communication, Career Readiness, Technical Literacy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEER EXPERIENCE -->
+  <section id="volunteer" class="section">
+    <div class="container">
+      <h2>Volunteer Experience</h2>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>Peer Tech Support – Student Mentor</h3>
+          <p class="muted">Lethbridge Polytechnic · 2023 – Present</p>
+          <ul>
+            <li>Help classmates troubleshoot SQL syntax errors and database connection issues.</li>
+            <li>Explain normalization and ERD concepts in simple language during study sessions.</li>
+            <li>Encourage good habits around version control, backups, and testing.</li>
+          </ul>
+          <p><strong>Core Competencies:</strong> Teamwork, Communication, Teaching & Mentoring</p>
+          <p><strong>Reason to include:</strong> Shows that I support peers, contribute to the learning community, and can explain technical topics clearly.</p>
+        </article>
+
+        <!-- TODO: Replace with your real volunteer experience if you have more -->
+        <article class="card">
+          <h3><!-- Example: Tech Volunteer – Community Event --></h3>
+          <p class="muted"><!-- Example: Lethbridge, AB · 2024 --></p>
+          <p class="muted">
+            Replace this box with another real volunteer activity (if applicable): e.g., helping
+            at a local event with setup, registration, or basic IT support.
+          </p>
+          <p><strong>Core Competencies:</strong> Initiative, Professionalism, Customer Service</p>
+          <p><strong>Reason to include:</strong> Demonstrates willingness to contribute outside of class and work.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LETTERS OF REFERENCE / ACCOLADES -->
+  <section id="accolades" class="section section-alt">
+    <div class="container">
+      <h2>Letters of Reference & Accolades</h2>
+      <p class="section-intro">
+        Below are selected comments and references that highlight my work ethic, professionalism,
+        and technical ability. Full letters can be provided upon request.
+      </p>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>Academic Reference</h3>
+          <p class="muted">CIT Instructor – Lethbridge Polytechnic</p>
+          <p class="quote">
+            “[Replace with a real short quote from your instructor about your work in a course or project.]”
+          </p>
+          <p><strong>Core Competencies:</strong> Academic Performance, Reliability, Technical Ability</p>
+          <p><strong>Reason to include:</strong> Shows trusted instructor support for my practicum and career goals.</p>
+        </article>
+
+        <article class="card">
+          <h3>Workplace Reference</h3>
+          <p class="muted">Supervisor – Pure Casino / McDonald's</p>
+          <p class="quote">
+            “[Replace with a real short quote from a supervisor about your attitude, reliability, or customer service.]”
+          </p>
+          <p><strong>Core Competencies:</strong> Professionalism, Customer Service, Teamwork</p>
+          <p><strong>Reason to include:</strong> Shows that I perform well in real-world, high-pressure environments.</p>
+        </article>
+
+        <article class="card">
+          <h3>Character Reference</h3>
+          <p class="muted">Personal Reference</p>
+          <p class="quote">
+            “[Replace with a real short quote from a mentor, friend, or community contact about your character.]”
+          </p>
+          <p><strong>Core Competencies:</strong> Integrity, Work Ethic, Interpersonal Skills</p>
+          <p><strong>Reason to include:</strong> Adds a personal dimension to my professional profile.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMING / DATABASE WORK SAMPLE -->
+  <section id="programming" class="section">
+    <div class="container">
+      <h2>Programming & Database Work Sample</h2>
+
+      <div class="card">
+        <h3>Stored Procedure – Shift Earnings Report</h3>
+        <p class="muted">MySQL · SQL Logic · Aggregation & Conditional Logic</p>
+        <pre class="code-block">
+CREATE PROCEDURE sp_CalculateShiftEarnings(
+    IN emp_id_param INT,
+    IN shift_date DATE
+)
+BEGIN
+    -- Calculate total sales and tips for specific shift
+    SELECT
+        e.employee_name,
+        COUNT(t.transaction_id) AS total_appointments,
+        SUM(t.tip_amount) AS total_tips,
+        CASE
+            WHEN SUM(t.tip_amount) &gt; 100 THEN 'High Performance'
+            ELSE 'Standard'
+        END AS performance_rating
+    FROM employees e
+    JOIN transactions t ON e.id = t.emp_id
+    WHERE e.id = emp_id_param
+      AND DATE(t.created_at) = shift_date
+    GROUP BY e.id;
+END;
+        </pre>
+        <p>
+          This procedure calculates an employee’s performance for a particular shift, using joins,
+          aggregation, and conditional logic. It is part of a larger tip and sales tracking system.
+        </p>
+        <p><strong>Core Competencies:</strong> Database Logic, Problem Solving, SQL Proficiency</p>
+        <p><strong>Reason to include:</strong> Demonstrates my ability to design and implement real business logic in SQL.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT WORK SAMPLE -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <h2>Project Work Sample</h2>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>PeachTrack – Salon Management System</h3>
+          <p class="muted">Backend Developer & Database Designer · Fall 2025</p>
+          <ul>
+            <li>Designed a centralized web-based system to replace manual paper tracking for a local beauty business.</li>
+            <li>Engineered the relational schema (MySQL) to track employee shifts, tips, and sales transparency.</li>
+            <li>Prepared detailed ERDs and data dictionaries for 6+ related entities.</li>
+            <li>Defined a CRUD matrix to separate Admin vs Employee permissions.</li>
+            <li>Collaborated in a 5-person agile team to complete feasibility analysis and system requirements.</li>
+          </ul>
+          <p><strong>Core Competencies:</strong> Systems Analysis, Data Modeling, Teamwork, Documentation</p>
+          <p><strong>Reason to include:</strong> This is my capstone-style project that best represents my combined technical and analytical skills.</p>
+        </article>
+
+        <article class="card">
+          <h3>E-Commerce Inventory Database</h3>
+          <p class="muted">Database Architect · Fall 2023</p>
+          <ul>
+            <li>Designed a normalized relational database for a high-volume retail inventory system.</li>
+            <li>Wrote complex queries (joins, subqueries, stored procedures) for sales reporting and stock control.</li>
+            <li>Applied indexing strategies to improve query performance.</li>
+          </ul>
+          <p><strong>Core Competencies:</strong> Database Design, Performance Tuning, Analytical Thinking</p>
+          <p><strong>Reason to include:</strong> Shows my ability to design and optimize databases beyond classroom examples.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER MATERIAL / CORE COMPETENCIES -->
+  <section id="other" class="section">
+    <div class="container">
+      <h2>Other Related Material & Core Competencies</h2>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>IT Operations & Soft Skills</h3>
+          <ul>
+            <li>Experienced working in high-pressure, regulated environments (casino operations).</li>
+            <li>Comfortable handling money, assets, and confidential information responsibly.</li>
+            <li>Used to shift work, time management, and balancing school with employment.</li>
+          </ul>
+          <p><strong>Core Competencies:</strong> Responsibility, Stress Management, Professionalism</p>
+          <p><strong>Reason to include:</strong> Connects my work experience to future IT support or operations roles.</p>
+        </article>
+
+        <article class="card">
+          <h3>Career Direction</h3>
+          <ul>
+            <li>Interested in database administration, IT support, and systems analysis roles.</li>
+            <li>Preparing for CompTIA A+ and future database-related certifications.</li>
+            <li>Open to practicum opportunities where I can work directly with SQL, Linux, and infrastructure.</li>
+          </ul>
+          <p><strong>Core Competencies:</strong> Career Planning, Lifelong Learning</p>
+          <p><strong>Reason to include:</strong> Shows that I have a clear next step and plan for growth in IT.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> Sumit Niveriya · Computer Information Technology Student</p>
+  </div>
+</footer>
+
+<script>
+  // Simple JS to keep year updated
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
