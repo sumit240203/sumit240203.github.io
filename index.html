@@ -273,41 +273,66 @@
       <h2>Programming Samples</h2>
 
       <div class="card">
-        <h3>User Registration &amp; Login System (PHP/MySQL)</h3>
-        <p class="muted">PHP · MySQL · Authentication · Form Validation</p>
-        <p>
-          I built a user registration and login web application using PHP and MySQL. The system
-          allows users to sign up with a unique email, stores passwords securely using hashing, and
-          validates input on both the client and server side. I planned the database tables,
-          designed the forms, wrote the backend logic, and tested various error conditions to make
-          sure the experience felt smooth and predictable for the user.
-        </p>
-        <p>
-          Building this project taught me how to organize tasks (design, database, logic, testing),
-          anticipate problems like invalid input or SQL injection, and respond with practical
-          solutions such as prepared statements. It also reinforced my understanding of session
-          handling and basic security practices.
-        </p>
-        <p><strong>Core Competencies:</strong> Web Development, Problem Solving, Planning &amp; Organization</p>
-        <p><strong>Reason to include:</strong> Demonstrates my ability to design and implement a complete, real-world web feature from scratch.</p>
-      </div>
+  <h3>User Registration &amp; Login System (PHP/MySQL)</h3>
+  <p class="muted">PHP · MySQL · Authentication · Form Validation</p>
+  <p>
+    I built a user registration and login web application using PHP and MySQL. The system
+    allows users to sign up with a unique email, stores passwords securely using hashing, and
+    validates input on both the client and server side. I planned the database tables,
+    designed the forms, wrote the backend logic, and tested various error conditions to make
+    sure the experience felt smooth and predictable for the user.
+  </p>
 
-      <div class="card" style="margin-top: 1.5rem;">
-        <h3>Data Analysis Script (Python)</h3>
-        <p class="muted">Python · CSV Processing · Reporting</p>
-        <p>
-          To expand my skills beyond web development, I created a Python script that reads data from
-          CSV files and generates simple reports. The script cleans the data, calculates summary
-          statistics (like totals and averages), and can export the results or print them in a
-          readable format. I also experimented with basic charting options to visualize trends.
-        </p>
-        <p>
-          This project helped me practice working with files, loops, and functions in Python, and it
-          showed me how programming can save time by automating repetitive analysis tasks.
-        </p>
-        <p><strong>Core Competencies:</strong> Analytical Thinking, Self-Directed Learning, Adaptability</p>
-        <p><strong>Reason to include:</strong> Shows that I can pick up new tools like Python and use them to solve data-related problems.</p>
-      </div>
+  <figure class="sample-figure">
+    <img src="register-ui.png" alt="Create Account screen from my PHP/MySQL registration system" />
+    <figcaption>Create Account screen with username, password, theme selection, and dynamic preview.</figcaption>
+  </figure>
+
+  <p>
+    Building this project taught me how to organize tasks (design, database, logic, testing),
+    anticipate problems like invalid input or SQL injection, and respond with practical
+    solutions such as prepared statements. It also reinforced my understanding of session
+    handling and basic security practices.
+  </p>
+  <p><strong>Core Competencies:</strong> Web Development, Problem Solving, Planning &amp; Organization</p>
+  <p><strong>Reason to include:</strong> Demonstrates my ability to design and implement a complete, real-world web feature from scratch.</p>
+</div>
+
+
+      <<div class="card" style="margin-top: 1.5rem;">
+  <h3>Data Analysis Script (Python)</h3>
+  <p class="muted">Python · CSV Processing · Reporting</p>
+  <p>
+    To expand my skills beyond web development, I created a Python script that reads data from
+    CSV files and generates simple reports. The script cleans the data, calculates summary
+    statistics (like totals and averages), and can export the results or print them in a
+    readable format. I also experimented with basic charting options to visualize trends.
+  </p>
+
+  <pre class="code-block">
+import csv
+
+def load_sales(path):
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        return [row for row in reader]
+
+rows = load_sales("sales.csv")
+total = sum(float(r["amount"]) for r in rows)
+average = total / len(rows)
+
+print(f"Total sales: ${total:.2f}")
+print(f"Average sale: ${average:.2f}")
+  </pre>
+
+  <p>
+    This project helped me practice working with files, loops, and functions in Python, and it
+    showed me how programming can save time by automating repetitive analysis tasks.
+  </p>
+  <p><strong>Core Competencies:</strong> Analytical Thinking, Self-Directed Learning, Adaptability</p>
+  <p><strong>Reason to include:</strong> Shows that I can pick up new tools like Python and use them to solve data-related problems.</p>
+</div>
+
     </div>
   </section>
 
