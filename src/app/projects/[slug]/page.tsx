@@ -13,18 +13,20 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export default function ProjectPage({
+export default async function ProjectPage({
   params,
 }: {
-  params: { slug: string };
+  // In some Next.js versions/environments, params may be async.
+  params: { slug: string } | Promise<{ slug: string }>;
 }) {
+  const { slug } = await Promise.resolve(params);
+
   // Special-case: PeachTrack has a dedicated page with a gallery
-  if (params.slug === "peachtrack") {
-    // Redirect to the dedicated route (keeps URLs stable)
-    // In static export, this will behave like a normal link when navigated.
+  if (slug === "peachtrack") {
+    // Dedicated route exists at /projects/peachtrack/
   }
 
-  const project = projects.find((p) => p.slug === params.slug);
+  const project = projects.find((p) => p.slug === slug);
   if (!project) return notFound();
 
   return (
