@@ -5,6 +5,10 @@ import { Card } from "@/components/Card";
 import { Container } from "@/components/Container";
 import { projects } from "@/content/site";
 
+// Required for static export of dynamic routes on GitHub Pages
+export const dynamicParams = false;
+export const dynamic = "force-static";
+
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
