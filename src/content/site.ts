@@ -28,6 +28,25 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "helpdesk-asset-tracker",
+    name: "Helpdesk + Asset Tracker",
+    blurb:
+      "Ticketing + asset tracking app with role-based access, ticket workflows, and a clean admin-style UI.",
+    tags: ["Next.js", "TypeScript", "Prisma", "SQLite", "RBAC"],
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/sumit240203/helpdesk-asset-tracker",
+      },
+    ],
+    highlights: [
+      "Tickets: create, list, view details, update status/priority",
+      "Role-based demo login (User/Tech/Manager) + protected routes",
+      "Prisma + SQLite persistence (migrations + server actions)",
+      "Designed an admin-style layout (sidebar, tables, forms)",
+    ],
+  },
+  {
     slug: "peachtrack",
     name: "PeachTrack — Shift & Tip Dashboard",
     blurb:
