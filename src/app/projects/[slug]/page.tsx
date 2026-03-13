@@ -109,9 +109,6 @@ export default async function ProjectPage({
             </div>
           ) : null}
 
-          <div className="mt-8 text-sm text-slate-500">
-            More detail can be added here: problem, users, flows, UI, testing, and what I’d do next.
-          </div>
         </div>
       </Container>
     </div>
