@@ -1,6 +1,6 @@
 export const site = {
   name: "Sumit Niveriya",
-  title: "Web Developer • Networking-focused IT Student",
+  title: "IT & Database Specialist • CIT Student",
   location: "Lethbridge, AB (Remote OK)",
   email: "niveriyasumit@gmail.com",
   links: {
@@ -94,6 +94,19 @@ export const projects: Project[] = [
       "Documentation optimized for handoffs",
     ],
   },
+  {
+    slug: "ecommerce-inventory",
+    name: "E-Commerce Inventory Database",
+    blurb:
+      "Normalized relational database for high-volume retail inventory tracking. Includes complex SQL queries, stored procedures, and indexing for performance.",
+    tags: ["MySQL", "SQL", "Normalization", "Stored Procedures"],
+    highlights: [
+      "Schema normalized to 3NF: products, categories, suppliers, orders, stock levels",
+      "Stored procedures for report generation and stock updates",
+      "Indexing strategy to optimize high-frequency queries",
+      "Complex joins and subqueries for sales tracking and restocking alerts",
+    ],
+  },
 ];
 
 export const skills = {
@@ -129,6 +142,12 @@ export const experience = [
     bullets: [
       "Help classmates troubleshoot SQL/database and web issues.",
       "Explain steps clearly and document fixes so others can repeat them.",
+      "Helped peers with database design, normalization (1NF–3NF), ERDs, and SQL query debugging.",
     ],
   },
+];
+
+export const certifications = [
+  { name: "SQL Fundamentals", issuer: "Coursera" },
+  { name: "Database Management Systems (DBMS)", issuer: "AML" },
 ];

@@ -79,9 +79,6 @@ export default function PeachTrackPage() {
             </div>
           </div>
 
-          <div className="mt-10 text-sm text-slate-500">
-            Next step: I can add a deeper case study here (users, flows, validation rules, and what I’d improve next).
-          </div>
         </div>
       </Container>
     </div>

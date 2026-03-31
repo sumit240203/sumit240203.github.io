@@ -8,7 +8,8 @@ import { Card } from "@/components/Card";
 import { Container } from "@/components/Container";
 import { HeaderActions } from "@/components/HeaderActions";
 import { HeroScene } from "@/components/HeroScene";
-import { experience, projects, site, skills } from "@/content/site";
+import { certifications, experience, projects, site, skills } from "@/content/site";
+
 import { Cmdk } from "@/components/Cmdk";
 import { CursorGlow } from "@/components/CursorGlow";
 import { Reveal } from "@/components/Reveal";
@@ -69,6 +70,9 @@ export default function Home() {
               <a className="nav-link hover:text-white" href="#skills">
                 Skills
               </a>
+              <a className="nav-link hover:text-white" href="#certifications">
+                Certifications
+              </a>
               <a className="nav-link hover:text-white" href="#experience">
                 Experience
               </a>
@@ -89,6 +93,7 @@ export default function Home() {
           { label: "PeachTrack case study", href: "/projects/peachtrack/", hint: "UI + reporting" },
           { label: "Auth system", href: "/projects/auth-system/", hint: "PHP/MySQL" },
           { label: "IT support portfolio", href: "/projects/it-support/", hint: "Docs" },
+          { label: "E-Commerce Inventory DB", href: "/projects/ecommerce-inventory/", hint: "MySQL + SQL" },
         ]}
       />
 
@@ -328,6 +333,24 @@ export default function Home() {
                 </Card>
               </motion.div>
             </motion.div>
+          </Container>
+        </section>
+
+        <section id="certifications" className="py-10">
+          <Container>
+            <h2 className="text-2xl font-semibold tracking-tight">Certifications</h2>
+            <div className="mt-6">
+              <Card>
+                <ul className="divide-y divide-white/5">
+                  {certifications.map((c) => (
+                    <li key={c.name} className="flex items-center justify-between py-3 text-sm">
+                      <span className="font-medium text-slate-100">{c.name}</span>
+                      <span className="text-slate-400">{c.issuer}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </div>
           </Container>
         </section>
 

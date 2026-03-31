@@ -5,22 +5,28 @@ import { Card } from "@/components/Card";
 import { Container } from "@/components/Container";
 import { projects } from "@/content/site";
 
+// Required for static export of dynamic routes on GitHub Pages
+export const dynamicParams = false;
+export const dynamic = "force-static";
+
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export default function ProjectPage({
+export default async function ProjectPage({
   params,
 }: {
-  params: { slug: string };
+  // In some Next.js versions/environments, params may be async.
+  params: { slug: string } | Promise<{ slug: string }>;
 }) {
+  const { slug } = await Promise.resolve(params);
+
   // Special-case: PeachTrack has a dedicated page with a gallery
-  if (params.slug === "peachtrack") {
-    // Redirect to the dedicated route (keeps URLs stable)
-    // In static export, this will behave like a normal link when navigated.
+  if (slug === "peachtrack") {
+    // Dedicated route exists at /projects/peachtrack/
   }
 
-  const project = projects.find((p) => p.slug === params.slug);
+  const project = projects.find((p) => p.slug === slug);
   if (!project) return notFound();
 
   return (
@@ -103,9 +109,6 @@ export default function ProjectPage({
             </div>
           ) : null}
 
-          <div className="mt-8 text-sm text-slate-500">
-            More detail can be added here: problem, users, flows, UI, testing, and what I’d do next.
-          </div>
         </div>
       </Container>
     </div>
