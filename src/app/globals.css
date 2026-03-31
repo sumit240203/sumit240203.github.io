@@ -2,6 +2,7 @@
 
 :root {
   color-scheme: dark;
+  --accent-cyan: #00d4ff;
 }
 
 * { box-sizing: border-box; }
@@ -51,6 +52,24 @@ body {
   100% { transform: translateY(110vh); opacity: 0; }
 }
 
+@keyframes glitch {
+  0%   { text-shadow: none; transform: none; }
+  10%  { text-shadow: -3px 0 #ff0040, 3px 0 #00d4ff; transform: translate(-2px, 0) skewX(-2deg); }
+  20%  { text-shadow: 3px 0 #ff0040, -3px 0 #00d4ff; transform: translate(2px, 0) skewX(2deg); }
+  30%  { text-shadow: -2px 0 #ff0040, 2px 0 #00d4ff; transform: translate(0px, 0); }
+  45%  { text-shadow: 3px 0 #ff0040, -3px 0 #00d4ff; transform: translate(3px, 0) skewX(1deg); }
+  50%  { text-shadow: none; transform: none; }
+  60%  { text-shadow: -3px 0 #ff0040, 3px 0 #00d4ff; transform: translate(-1px, 0); }
+  70%  { text-shadow: 3px 0 #ff0040, -3px 0 #00d4ff; transform: translate(2px, 0) skewX(-1deg); }
+  85%  { text-shadow: none; transform: none; }
+  100% { text-shadow: none; transform: none; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .intro-overlay {
   position: fixed;
   inset: 0;
@@ -92,8 +111,9 @@ body {
 .intro-title {
   opacity: 0;
   transform: translateY(14px);
-  animation: intro_pop 620ms ease forwards;
-  animation-delay: 90ms;
+  animation:
+    intro_pop 620ms ease 90ms forwards,
+    glitch 600ms ease 800ms 1;
 }
 .intro-sub {
   opacity: 0;
@@ -130,4 +150,29 @@ body {
   background-clip: text;
   color: transparent;
   animation: shine 8s ease-in-out infinite;
+}
+
+/* Typewriter blinking cursor */
+.typewriter-cursor {
+  color: var(--accent-cyan);
+  animation: blink 1s step-start infinite;
+  margin-left: 1px;
+}
+
+/* Nav link hover underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent-cyan);
+  transition: width 0.2s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
 }

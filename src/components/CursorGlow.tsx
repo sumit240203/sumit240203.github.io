@@ -46,7 +46,7 @@ export function CursorGlow() {
         className="absolute inset-0 opacity-80 mix-blend-screen"
         style={{
           background:
-            "radial-gradient(380px circle at var(--x) var(--y), rgba(96,165,250,0.18), transparent 60%)",
+            "radial-gradient(380px circle at var(--x) var(--y), rgba(0,212,255,0.18), transparent 60%)",
         }}
       />
     </div>

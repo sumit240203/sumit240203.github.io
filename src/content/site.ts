@@ -12,7 +12,7 @@ export const site = {
     badge: "Open to co-op & internships",
     headline: "I build clean web interfaces and practical systems.",
     subhead:
-      "CIT student graduating 2026. I like turning messy workflows into simple dashboards, reports, and tools people actually enjoy using.",
+      "CIT student graduating Winter 2026 from Lethbridge Polytechnic. I turn messy workflows into clean dashboards, systems, and tools people actually want to use.",
   },
 };
 
@@ -97,8 +97,8 @@ export const projects: Project[] = [
 ];
 
 export const skills = {
-  web: ["HTML", "CSS", "JavaScript (basic)", "PHP"],
-  databases: ["MySQL", "SQL Server", "Oracle", "Normalization (1NF–3NF)", "ERDs"],
+  languages: ["Python", "C++", "PHP", "JavaScript"],
+  databases: ["MySQL", "SQL Server", "Oracle", "MongoDB", "Normalization (1NF–3NF)", "ERDs"],
   networking: ["TCP/IP basics", "Subnetting", "DHCP/DNS", "Windows Server labs"],
   tools: ["Git/GitHub", "VS Code", "DBeaver", "Nmap"],
 };
@@ -115,7 +115,7 @@ export const experience = [
   },
   {
     role: "Shift Supervisor",
-    org: "McDonald’s",
+    org: "McDonald's",
     dates: "2022 – 2023",
     bullets: [
       "Led shift operations and supported training during busy periods.",
