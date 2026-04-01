@@ -176,3 +176,98 @@ body {
 .nav-link:hover::after {
   width: 100%;
 }
+
+/* ── Moving Border Card ──────────────────────────────── */
+.moving-border-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.moving-border-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+.moving-border-gradient {
+  position: absolute;
+  inset: -150%;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    #6ee7b7 50deg,
+    #00d4ff 110deg,
+    #818cf8 170deg,
+    transparent 230deg,
+    transparent 360deg
+  );
+  animation: spin-border 3.5s linear infinite;
+  transition: opacity 0.45s ease;
+}
+.moving-border-wrapper:hover .moving-border-gradient {
+  opacity: 1;
+}
+@keyframes spin-border {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Marquee ─────────────────────────────────────────── */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, white 8%, white 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, white 8%, white 92%, transparent);
+}
+@keyframes marquee-fwd {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-rev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee {
+  animation: marquee-fwd 28s linear infinite;
+}
+.animate-marquee-rev {
+  animation: marquee-rev 28s linear infinite;
+}
+
+/* ── Shimmer Button ──────────────────────────────────── */
+.shimmer-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #6ee7b7;
+  color: #0f172a;
+  text-decoration: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.shimmer-btn:hover {
+  background: #a7f3d0;
+  box-shadow: 0 0 24px rgba(110, 231, 183, 0.45);
+}
+.shimmer-btn-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-move 2.8s ease-in-out infinite;
+}
+@keyframes shimmer-move {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}

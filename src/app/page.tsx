@@ -14,8 +14,14 @@ import { Cmdk } from "@/components/Cmdk";
 import { CursorGlow } from "@/components/CursorGlow";
 import { Reveal } from "@/components/Reveal";
 import { TypewriterText } from "@/components/TypewriterText";
-import { TiltCard } from "@/components/TiltCard";
-import { ParticleCanvas } from "@/components/ParticleCanvas";
+import dynamic from "next/dynamic";
+import { MovingBorderCard } from "@/components/MovingBorderCard";
+import { Marquee } from "@/components/Marquee";
+
+const Hero3D = dynamic(
+  () => import("@/components/Hero3D").then((m) => ({ default: m.Hero3D })),
+  { ssr: false }
+);
 
 const heroContainer = {
   hidden: {},
@@ -47,7 +53,6 @@ const skillItem = {
 export default function Home() {
   return (
     <div className="min-h-dvh bg-slate-950 text-slate-100">
-      <ParticleCanvas />
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-[-20%] top-[-10%] h-[520px] w-[720px] rounded-full bg-emerald-300/18 blur-[95px] [animation:floaty_9s_ease-in-out_infinite]" />
         <div className="absolute right-[-20%] top-[0%] h-[520px] w-[720px] rounded-full bg-blue-500/18 blur-[95px] [animation:floaty_10s_ease-in-out_infinite]" />
@@ -99,6 +104,7 @@ export default function Home() {
 
       <main>
         <HeroScene>
+          <Hero3D />
           <section className="py-14 sm:py-20">
             <Container>
               <motion.div
@@ -127,11 +133,9 @@ export default function Home() {
                     variants={heroItem}
                     className="mt-7 flex flex-wrap gap-3"
                   >
-                    <a
-                      href="#projects"
-                      className="rounded-full bg-emerald-300 px-5 py-2.5 text-sm font-semibold text-slate-950 hover:bg-emerald-200"
-                    >
-                      View work
+                    <a href="#projects" className="shimmer-btn">
+                      <span className="shimmer-btn-shine" aria-hidden="true" />
+                      <span className="relative z-10">View work</span>
                     </a>
                     <a
                       href={site.links.linkedin}
@@ -225,7 +229,7 @@ export default function Home() {
             >
               {projects.slice(0, 2).map((p) => (
                 <motion.div key={p.slug} variants={gridItem}>
-                  <TiltCard>
+                  <MovingBorderCard>
                     <div className="flex items-start justify-between gap-3">
                       <h3 className="text-lg font-semibold">{p.name}</h3>
                       <Link
@@ -246,7 +250,7 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                  </TiltCard>
+                  </MovingBorderCard>
                 </motion.div>
               ))}
             </motion.div>
@@ -265,74 +269,28 @@ export default function Home() {
         <section id="skills" className="py-10">
           <Container>
             <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
-            <motion.div
-              variants={skillsContainer}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.1 }}
-              className="mt-6 grid gap-5 md:grid-cols-2"
-            >
-              <motion.div variants={skillItem}>
-                <Card>
-                  <div className="text-xs uppercase tracking-widest text-slate-400">Languages</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {skills.languages.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-              <motion.div variants={skillItem}>
-                <Card>
-                  <div className="text-xs uppercase tracking-widest text-slate-400">Databases</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {skills.databases.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-              <motion.div variants={skillItem}>
-                <Card>
-                  <div className="text-xs uppercase tracking-widest text-slate-400">Networking</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {skills.networking.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-              <motion.div variants={skillItem}>
-                <Card>
-                  <div className="text-xs uppercase tracking-widest text-slate-400">Tools</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {skills.tools.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-            </motion.div>
+            <div className="mt-8 space-y-4">
+              <Marquee>
+                {[...skills.languages, ...skills.databases].map((s) => (
+                  <span
+                    key={s}
+                    className="inline-flex shrink-0 items-center rounded-full border border-emerald-300/25 bg-emerald-300/[0.07] px-4 py-2 text-sm font-medium text-emerald-200 backdrop-blur"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </Marquee>
+              <Marquee reverse>
+                {[...skills.networking, ...skills.tools].map((s) => (
+                  <span
+                    key={s}
+                    className="inline-flex shrink-0 items-center rounded-full border border-cyan-400/25 bg-cyan-400/[0.07] px-4 py-2 text-sm font-medium text-cyan-200 backdrop-blur"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </Marquee>
+            </div>
           </Container>
         </section>
 
