@@ -81,6 +81,7 @@ export function Hero3D() {
         camera={{ position: [0, 0, 5.5], fov: 42 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
+        style={{ pointerEvents: "none" }}
       >
         <Scene />
       </Canvas>

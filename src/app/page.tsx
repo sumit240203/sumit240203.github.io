@@ -105,7 +105,7 @@ export default function Home() {
       <main>
         <HeroScene>
           <Hero3D />
-          <section className="py-14 sm:py-20">
+          <section className="relative z-10 py-14 sm:py-20">
             <Container>
               <motion.div
                 variants={heroContainer}
@@ -157,45 +157,105 @@ export default function Home() {
                 </div>
 
                 <motion.div variants={heroItem}>
-                  <Card>
+                  <MovingBorderCard>
+                    {/* Profile photo + name */}
                     <div className="flex items-center gap-4">
-                      <Image
-                        src="/profile.jpg"
-                        alt="Profile photo"
-                        width={112}
-                        height={128}
-                        className="h-32 w-28 rounded-2xl border border-white/10 object-cover"
-                        priority
-                      />
-                      <div>
-                        <div className="text-sm text-slate-300">{site.location}</div>
-                        <div className="mt-1 text-sm">
-                          <a className="text-slate-100 hover:underline" href={`mailto:${site.email}`}>
-                            {site.email}
-                          </a>
+                      {/* Spinning gradient ring around photo */}
+                      <div className="relative h-[88px] w-[88px] shrink-0">
+                        <div
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            background: "conic-gradient(from 0deg, #6ee7b7, #00d4ff, #818cf8, #6ee7b7)",
+                            animation: "spin-border 4s linear infinite",
+                            padding: "2px",
+                          }}
+                        >
+                          <div className="h-full w-full rounded-full bg-slate-950" />
                         </div>
-                        <div className="mt-3 flex gap-3 text-xs text-slate-300">
-                          <a className="hover:text-white" href={site.links.linkedin} target="_blank" rel="noopener">
-                            LinkedIn
-                          </a>
-                          <span className="text-white/15">•</span>
-                          <a className="hover:text-white" href={site.links.github} target="_blank" rel="noopener">
-                            GitHub
-                          </a>
-                        </div>
+                        <Image
+                          src="/profile.jpg"
+                          alt="Profile photo"
+                          width={84}
+                          height={84}
+                          className="absolute inset-[2px] h-[calc(100%-4px)] w-[calc(100%-4px)] rounded-full object-cover"
+                          priority
+                        />
+                        {/* Online dot */}
+                        <span className="absolute bottom-0.5 right-0.5 flex h-3.5 w-3.5">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                          <span className="relative inline-flex h-3.5 w-3.5 rounded-full bg-emerald-400 ring-2 ring-slate-950" />
+                        </span>
+                      </div>
+
+                      <div className="min-w-0">
+                        <div className="font-semibold text-slate-100">{site.name}</div>
+                        <div className="mt-0.5 text-xs text-slate-400 leading-snug">{site.title}</div>
+                        <div className="mt-1 text-xs text-slate-500">{site.location}</div>
                       </div>
                     </div>
 
-                    <div className="mt-5 grid gap-3">
-                      <div className="text-xs uppercase tracking-widest text-slate-400">
-                        What I&apos;m focused on
+                    {/* Available badge */}
+                    <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-300/[0.08] px-3 py-1 text-xs font-medium text-emerald-300">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      </span>
+                      Open to co-op &amp; internships
+                    </div>
+
+                    {/* Quick stats */}
+                    <div className="mt-4 grid grid-cols-3 divide-x divide-white/[0.06] rounded-xl border border-white/[0.06] bg-white/[0.03]">
+                      <div className="py-3 text-center">
+                        <div className="text-lg font-bold text-slate-100">5</div>
+                        <div className="text-[10px] text-slate-500">Projects</div>
                       </div>
-                      <div className="text-sm text-slate-200">
+                      <div className="py-3 text-center">
+                        <div className="text-lg font-bold text-slate-100">2</div>
+                        <div className="text-[10px] text-slate-500">Certs</div>
+                      </div>
+                      <div className="py-3 text-center">
+                        <div className="text-lg font-bold text-slate-100">2+</div>
+                        <div className="text-[10px] text-slate-500">Yrs exp</div>
+                      </div>
+                    </div>
+
+                    {/* Email + social links */}
+                    <div className="mt-4 flex items-center justify-between gap-3">
+                      <a
+                        className="truncate text-xs text-slate-400 transition-colors hover:text-slate-200"
+                        href={`mailto:${site.email}`}
+                      >
+                        {site.email}
+                      </a>
+                      <div className="flex shrink-0 gap-2">
+                        <a
+                          href={site.links.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+                        >
+                          LinkedIn
+                        </a>
+                        <a
+                          href={site.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+                        >
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Focus area */}
+                    <div className="mt-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-3">
+                      <div className="text-[10px] uppercase tracking-widest text-slate-500">Currently focused on</div>
+                      <div className="mt-1.5 text-xs leading-relaxed text-slate-300">
                         Building portfolio‑ready web projects, strengthening networking fundamentals,
                         and improving UI/UX clarity in every app I ship.
                       </div>
                     </div>
-                  </Card>
+                  </MovingBorderCard>
                 </motion.div>
               </motion.div>
             </Container>
