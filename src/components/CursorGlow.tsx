@@ -3,50 +3,101 @@
 import { useEffect, useRef } from "react";
 
 export function CursorGlow() {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const dotRef   = useRef<HTMLDivElement>(null);
+  const ringRef  = useRef<HTMLDivElement>(null);
+  const trailRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    // default position so it shows even before moving the mouse
-    el.style.setProperty("--x", `${Math.round(window.innerWidth * 0.35)}px`);
-    el.style.setProperty("--y", `${Math.round(window.innerHeight * 0.25)}px`);
-
+    let mx = window.innerWidth  * 0.35;
+    let my = window.innerHeight * 0.25;
+    let tx = mx, ty = my; // trailed position
     let raf = 0;
+
     const onMove = (e: PointerEvent) => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        el.style.setProperty("--x", `${e.clientX}px`);
-        el.style.setProperty("--y", `${e.clientY}px`);
-      });
+      mx = e.clientX;
+      my = e.clientY;
+    };
+
+    const loop = () => {
+      // Smooth lag for trail
+      tx += (mx - tx) * 0.07;
+      ty += (my - ty) * 0.07;
+
+      const dot   = dotRef.current;
+      const ring  = ringRef.current;
+      const trail = trailRef.current;
+
+      if (dot)   dot.style.transform   = `translate(${mx - 4}px, ${my - 4}px)`;
+      if (ring)  ring.style.transform  = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+      if (trail) trail.style.transform = `translate(${tx}px, ${ty}px) translate(-50%, -50%)`;
+
+      raf = requestAnimationFrame(loop);
     };
 
     window.addEventListener("pointermove", onMove);
+    raf = requestAnimationFrame(loop);
+
     return () => {
-      cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
     <div
-      ref={ref}
-      className="pointer-events-none fixed inset-0 -z-10"
+      className="pointer-events-none fixed inset-0 z-[998] overflow-hidden"
       aria-hidden="true"
     >
+      {/* 1. Small bright dot — instant follow */}
       <div
-        className="absolute inset-0 opacity-100 mix-blend-screen"
+        ref={dotRef}
         style={{
-          background:
-            "radial-gradient(540px circle at var(--x) var(--y), rgba(110,231,183,0.28), transparent 62%)",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: 8,
+          height: 8,
+          borderRadius: "50%",
+          background: "#6ee7b7",
+          boxShadow: "0 0 10px 2px rgba(110,231,183,0.9), 0 0 20px 4px rgba(110,231,183,0.4)",
+          mixBlendMode: "screen",
+          willChange: "transform",
         }}
       />
+
+      {/* 2. Mid ring — instant follow, faint border */}
       <div
-        className="absolute inset-0 opacity-80 mix-blend-screen"
+        ref={ringRef}
         style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: 48,
+          height: 48,
+          borderRadius: "50%",
+          border: "1px solid rgba(110,231,183,0.45)",
+          background: "radial-gradient(circle, rgba(110,231,183,0.1) 0%, transparent 70%)",
+          mixBlendMode: "screen",
+          willChange: "transform",
+          animation: "cursor-ring-pulse 2.2s ease-in-out infinite",
+        }}
+      />
+
+      {/* 3. Large trailing aura */}
+      <div
+        ref={trailRef}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: 520,
+          height: 520,
+          borderRadius: "50%",
           background:
-            "radial-gradient(380px circle at var(--x) var(--y), rgba(0,212,255,0.18), transparent 60%)",
+            "radial-gradient(circle, rgba(110,231,183,0.18) 0%, rgba(0,212,255,0.09) 40%, transparent 68%)",
+          filter: "blur(6px)",
+          mixBlendMode: "screen",
+          willChange: "transform",
         }}
       />
     </div>

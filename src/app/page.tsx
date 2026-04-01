@@ -17,6 +17,9 @@ import { TypewriterText } from "@/components/TypewriterText";
 import dynamic from "next/dynamic";
 import { MovingBorderCard } from "@/components/MovingBorderCard";
 import { Marquee } from "@/components/Marquee";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { ScrambleText } from "@/components/ScrambleText";
+import { CountUp } from "@/components/CountUp";
 
 const Hero3D = dynamic(
   () => import("@/components/Hero3D").then((m) => ({ default: m.Hero3D })),
@@ -53,12 +56,17 @@ const skillItem = {
 export default function Home() {
   return (
     <div className="min-h-dvh bg-slate-950 text-slate-100">
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute left-[-20%] top-[-10%] h-[520px] w-[720px] rounded-full bg-emerald-300/18 blur-[95px] [animation:floaty_9s_ease-in-out_infinite]" />
-        <div className="absolute right-[-20%] top-[0%] h-[520px] w-[720px] rounded-full bg-blue-500/18 blur-[95px] [animation:floaty_10s_ease-in-out_infinite]" />
-        <div className="absolute bottom-[-20%] left-[30%] h-[520px] w-[720px] rounded-full bg-emerald-300/14 blur-[110px] [animation:floaty_11s_ease-in-out_infinite]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.06)_1px,transparent_0)] [background-size:28px_28px] opacity-[0.22]" />
+      {/* Aurora background */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="aurora-1" />
+        <div className="aurora-2" />
+        <div className="aurora-3" />
+        <div className="aurora-4" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] [background-size:28px_28px]" />
       </div>
+      {/* Film grain */}
+      <div className="noise-overlay" aria-hidden="true" />
+      <ScrollProgress />
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
         <Container>
@@ -206,15 +214,15 @@ export default function Home() {
                     {/* Quick stats */}
                     <div className="mt-4 grid grid-cols-3 divide-x divide-white/[0.06] rounded-xl border border-white/[0.06] bg-white/[0.03]">
                       <div className="py-3 text-center">
-                        <div className="text-lg font-bold text-slate-100">5</div>
+                        <div className="text-lg font-bold text-slate-100"><CountUp to={5} /></div>
                         <div className="text-[10px] text-slate-500">Projects</div>
                       </div>
                       <div className="py-3 text-center">
-                        <div className="text-lg font-bold text-slate-100">2</div>
+                        <div className="text-lg font-bold text-slate-100"><CountUp to={2} /></div>
                         <div className="text-[10px] text-slate-500">Certs</div>
                       </div>
                       <div className="py-3 text-center">
-                        <div className="text-lg font-bold text-slate-100">2+</div>
+                        <div className="text-lg font-bold text-slate-100"><CountUp to={2} suffix="+" /></div>
                         <div className="text-[10px] text-slate-500">Yrs exp</div>
                       </div>
                     </div>
@@ -266,7 +274,7 @@ export default function Home() {
           <Container>
             <div className="flex items-end justify-between gap-6">
               <div>
-                <h2 className="text-2xl font-semibold tracking-tight">Projects</h2>
+                <ScrambleText text="Projects" as="h2" className="section-heading text-2xl font-semibold tracking-tight" />
                 <p className="mt-2 max-w-2xl text-sm text-slate-300">
                   A few things I&apos;ve built recently. I prefer projects with real workflows,
                   clear requirements, and measurable improvements.
@@ -328,7 +336,7 @@ export default function Home() {
 
         <section id="skills" className="py-10">
           <Container>
-            <h2 className="text-2xl font-semibold tracking-tight">Skills</h2>
+            <ScrambleText text="Skills" as="h2" className="section-heading text-2xl font-semibold tracking-tight" />
             <div className="mt-8 space-y-4">
               <Marquee>
                 {[...skills.languages, ...skills.databases].map((s) => (
@@ -356,7 +364,7 @@ export default function Home() {
 
         <section id="certifications" className="py-10">
           <Container>
-            <h2 className="text-2xl font-semibold tracking-tight">Certifications</h2>
+            <ScrambleText text="Certifications" as="h2" className="section-heading text-2xl font-semibold tracking-tight" />
             <div className="mt-6">
               <Card>
                 <ul className="divide-y divide-white/5">
@@ -375,22 +383,35 @@ export default function Home() {
         <section id="experience" className="py-10">
           <Reveal delayMs={40}>
             <Container>
-              <h2 className="text-2xl font-semibold tracking-tight">Experience</h2>
-              <div className="mt-6 grid gap-5">
-                {experience.map((e) => (
-                  <Card key={e.role + e.dates}>
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <div className="text-lg font-semibold">{e.role}</div>
-                      <div className="text-sm text-slate-400">{e.dates}</div>
+              <ScrambleText text="Experience" as="h2" className="section-heading text-2xl font-semibold tracking-tight" />
+              <div className="relative mt-8 pl-10">
+                <div className="timeline-line" />
+                <div className="space-y-8">
+                  {experience.map((e) => (
+                    <div key={e.role + e.dates} className="relative">
+                      <div className="timeline-dot">
+                        <div className="timeline-dot-inner" />
+                      </div>
+                      <Card>
+                        <div className="flex flex-wrap items-baseline justify-between gap-2">
+                          <div className="text-lg font-semibold">{e.role}</div>
+                          <div className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-slate-400">
+                            {e.dates}
+                          </div>
+                        </div>
+                        <div className="mt-1 text-sm font-medium text-emerald-300/80">{e.org}</div>
+                        <ul className="mt-3 space-y-1.5 text-sm text-slate-300">
+                          {e.bullets.map((b) => (
+                            <li key={b} className="flex gap-2">
+                              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-emerald-400/60" />
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      </Card>
                     </div>
-                    <div className="mt-1 text-sm text-slate-300">{e.org}</div>
-                    <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-slate-300">
-                      {e.bullets.map((b) => (
-                        <li key={b}>{b}</li>
-                      ))}
-                    </ul>
-                  </Card>
-                ))}
+                  ))}
+                </div>
               </div>
             </Container>
           </Reveal>
